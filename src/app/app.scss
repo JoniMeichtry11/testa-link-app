@@ -1,0 +1,135 @@
+.th-bg {
+  background: radial-gradient(1200px 800px at 50% -10%, rgba(255, 106, 0, 0.08), transparent 60%),
+              linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(18, 18, 18, 1) 100%);
+  background-color: var(--th-bg-dark);
+}
+.th-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  backdrop-filter: blur(8px);
+}
+.th-border-metal {
+  border: 1px solid color-mix(in oklab, var(--th-metal-light) 30%, var(--th-metal-dark));
+}
+
+/* Halo y ruido sutil */
+.th-glow-bg {
+  background: radial-gradient(600px 300px at 60% 0%, var(--th-accent-glow), transparent 60%),
+              radial-gradient(400px 200px at 30% 20%, rgba(255, 106, 0, 0.25), transparent 60%);
+}
+.th-noise-mask {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+/* Tipografía auxiliar */
+.th-text-metal-light { color: var(--th-metal-light); }
+.th-text-metal-mid   { color: color-mix(in oklab, var(--th-metal-mid), #ffffff 10%); }
+
+/* Chip */
+.th-chip {
+  background: color-mix(in oklab, var(--th-metal-dark), #000 20%);
+  border: 1px solid color-mix(in oklab, var(--th-metal-mid), #fff 10%);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+
+/* Botones de enlace - versión móvil optimizada */
+.th-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px; /* más altos en móvil */
+  border-radius: 16px;
+  padding: 26px 18px;
+  background: var(--th-gradient-metal);
+  color: var(--th-metal-light);
+  font-weight: 600;
+  font-size: 1.6rem;
+  border: 1px solid var(--th-metal-mid);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.th-link-btn:hover {
+  background: var(--th-gradient-fire);
+  color: #000;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35), 0 0 12px var(--th-accent-glow);
+  border-color: var(--th-orange-primary);
+}
+
+.th-link-btn:active {
+  transform: translateY(0) scale(1);
+}
+
+.th-link-btn svg {
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+/* Contenido interno */
+.th-link-inner {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Flecha animada más sutil */
+.th-arrow {
+  margin-left: auto;
+  color: inherit;
+  transform: translateX(-4px);
+  transition: transform 0.25s ease;
+}
+.th-link-btn:hover .th-arrow {
+  transform: translateX(3px);
+}
+
+/* Anillo animado del logo */
+.th-ring {
+  border-radius: 24px;
+  filter: drop-shadow(0 0 14px var(--th-accent-glow));
+  background: radial-gradient(120px 120px at 50% 50%, #ffffff08, transparent 60%),
+              conic-gradient(from 0deg at 50% 50%, var(--th-orange-dark), var(--th-orange-primary), var(--th-orange-dark));
+  mask: radial-gradient(closest-side, transparent 75%, #000 78%);
+  opacity: 0.6;
+}
+
+/* Animaciones generales */
+@keyframes glow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.6;  transform: scale(1.02); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--th-accent-glow), transparent 40%); }
+  70%  { box-shadow: 0 0 0 16px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.animate-glow      { animation: glow 6s ease-in-out infinite; }
+.animate-float     { animation: float 5.5s ease-in-out infinite; }
+.animate-pulse-ring{ animation: pulseRing 2.8s ease-out infinite; }
+
+/* Botón primario alternativo */
+.th-btn-primary {
+  background: var(--th-gradient-fire);
+  color: #0b0b0b;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Accesibilidad: foco visible */
+:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--th-orange-primary), #fff 20%);
+  outline-offset: 2px;
+}
+
+/* Respeto a usuarios con reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-glow, .animate-float, .animate-pulse-ring { animation: none !important; }
+  .th-link-btn, .th-arrow { transition: none !important; }
+}
