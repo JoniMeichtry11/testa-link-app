@@ -50,6 +50,16 @@
       ></span>
       Metalúrgica, Morsetería y Herrajes
     </div>
+    <!-- Botón compartir -->
+    <div class="mt-4">
+      <button
+        (click)="shareSite()"
+        class="th-link-btn w-full flex items-center justify-center gap-2"
+      >
+        <img src="shared.png" alt="Compartir" class="size-6" />
+        <span class="pb-1">Compartir</span>
+      </button>
+    </div>
   </header>
 
   <!-- Enlaces -->
@@ -122,3 +132,42 @@
     © 1977–2025 Testa Hermanos · Morsetería y herrajes para líneas aéreas
   </footer>
 </div>
+
+@if(showShareModal()){
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+  >
+    <div
+      class="w-80 rounded-2xl th-card border th-border-metal bg-neutral-900 p-6 text-center"
+    >
+      <h2 class="mb-4 text-lg font-semibold">Compartir</h2>
+      <div class="flex flex-col gap-3">
+        <!-- Copiar link -->
+        <button
+          (click)="copyLink()"
+          class="th-link-btn flex items-center justify-center gap-2"
+        >
+          📋 Copiar enlace
+        </button>
+
+        <a [href]="whatsappShareUrl" target="_blank" class="th-link-btn flex items-center justify-center gap-2">
+          <img src="whatsapp.webp" alt="whatsapp" class="size-6" />
+          WhatsApp
+        </a>
+
+        <a [href]="linkedinShareUrl" target="_blank" class="th-link-btn flex items-center justify-center gap-2">
+          <img src="linkedin.webp" alt="linkedin" class="size-6" />
+          LinkedIn
+        </a>
+      </div>
+
+      <button
+        (click)="closeModal()"
+        class="mt-6 text-sm text-neutral-400 hover:text-white"
+      >
+        Cerrar
+      </button>
+    </div>
+  </div>
+}
+<!-- Modal de fallback -->
