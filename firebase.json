@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "testa-hermanos-perfiles",
+    "public": "dist/testa-link-app/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
